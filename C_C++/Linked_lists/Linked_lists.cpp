@@ -35,7 +35,6 @@ void    insertAfter(Node *prev, int data)
     prev->next = newNode;
 }
 
-
 void    append(Node **head, int data)
 {
     Node *it = *head;
@@ -49,31 +48,63 @@ void    append(Node **head, int data)
     it->next = newNode;
 }
 
-
-/*
-void append(Node** head_ref, int new_data)
+void    deleteNode(Node **head, int position)
 {
-    Node* new_node = new Node();
-
-    Node *last = *head_ref;
-
-    new_node->data = new_data;
-
-    new_node->next = NULL;
-
-    if (*head_ref == NULL)
+    if (*head == NULL) return;
+    Node *tmp = new Node();
+    tmp = *head;
+    if (position == 0)
     {
-        *head_ref = new_node;
-        return;
+        *head = tmp->next;
+        free(*head);
+        return ;
     }
-
-    while (last->next != NULL)
-        last = last->next;
-
-    last->next = new_node;
-    return;
+    for (int i = 0; tmp != NULL && i < position - 1; i++)
+        tmp = tmp->next;
+    if (tmp == NULL || tmp->next == NULL)
+        return;
+    free(tmp->next);
+    Node *next = tmp->next->next;
+    tmp->next = next;
 }
-*/
+
+int     size(Node *head)
+{
+    int i = 0;
+    while (head != NULL)
+    {
+        head = head->next;
+        i++;
+    }
+    return i;
+}
+
+void    swapNode(Node **head, int x, int y)
+{
+    if (x == y) return ;
+    Node *prevX = NULL, *currentX = *head;
+    while (currentX && currentX->data != x)
+    {
+        prevX = currentX;
+        currentX = currentX->next;
+    }
+    Node *prevY = NULL, *currentY = *head;
+    while (currentY && currentY->data != y)
+    {
+        prevY = currentY;
+        currentY = currentY->next;
+    }
+    if (currentX == NULL || currentY == NULL) return ;
+    // if x is not the head of linked list
+    if (prevX != NULL)
+        *head = currentY;
+    else
+        *head = currentX;
+
+    Node *tmp = currentY->next;
+    currentY->next = currentX->next;
+    currentX->next = tmp;
+}
 
 int     main(void)
 {
@@ -95,11 +126,18 @@ int     main(void)
     // linked list becomes 1->7->6->4->NULL
     append(&head, 4);
 
+    deleteNode(&head, 4);
+
     // Insert 8, after 7. So linked
     // list becomes 1->7->8->6->4->NULL
     insertAfter(head->next, 8);
 
     cout<<"Created Linked list is: ";
+    printList(head);
+    cout << "size of this linked list: " << size(head);
+
+    cout << "\n\n\n\n\n\n\n";
+    reverse(head);
     printList(head);
     return (0);
 }
