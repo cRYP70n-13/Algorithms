@@ -17,24 +17,89 @@ void    printList(Node *head)
     }
 }
 
+void    push(Node **head, int data)
+{
+    Node *newNode = new Node();
+    newNode->next = *head;
+    newNode->data = data;
+    *head = newNode;
+}
+
+void    insertAfter(Node *prev, int data)
+{
+    if (prev == NULL)
+        cout << "Doesn't exist" << endl;
+    Node *newNode = new Node();
+    newNode->data = data;
+    newNode->next = prev->next;
+    prev->next = newNode;
+}
+
+
+void    append(Node **head, int data)
+{
+    Node *it = *head;
+    Node *newNode = new Node();
+    newNode->data = data;
+    newNode->next = NULL;
+    if (*head == NULL)
+        *head = newNode; return ;
+    while (it->next != NULL)
+        it = it->next;
+    it->next = newNode;
+}
+
+
+/*
+void append(Node** head_ref, int new_data)
+{
+    Node* new_node = new Node();
+
+    Node *last = *head_ref;
+
+    new_node->data = new_data;
+
+    new_node->next = NULL;
+
+    if (*head_ref == NULL)
+    {
+        *head_ref = new_node;
+        return;
+    }
+
+    while (last->next != NULL)
+        last = last->next;
+
+    last->next = new_node;
+    return;
+}
+*/
+
 int     main(void)
 {
-    Node *head = NULL;
-    Node *second = NULL;
-    Node *third = NULL;
+     /* Start with the empty list */
+    Node* head = NULL;
 
-    head = new Node();
-    second = new Node();
-    third = new Node();
+    // Insert 6. So linked list becomes 6->NULL
+    append(&head, 6);
 
-    head->data = 1;
-    head->next = second;
-    second->data = 13;
-    second->next = third;
-    third->data = 899;
-    third->next = NULL;
+    // Insert 7 at the beginning.
+    // So linked list becomes 7->6->NULL
+    push(&head, 7);
 
+    // Insert 1 at the beginning.
+    // So linked list becomes 1->7->6->NULL
+    push(&head, 1);
+
+    // Insert 4 at the end. So
+    // linked list becomes 1->7->6->4->NULL
+    append(&head, 4);
+
+    // Insert 8, after 7. So linked
+    // list becomes 1->7->8->6->4->NULL
+    insertAfter(head->next, 8);
+
+    cout<<"Created Linked list is: ";
     printList(head);
-
     return (0);
 }
