@@ -1,6 +1,6 @@
 // This is the partition problem to be honest I didn't understand this problem but I will give it a shot
 // OKAY I DID IT this is my solution
-const partition = function(head, x) {
+var partition = function(head, x) {
     let before = new ListNode(), after = new ListNode();
     let p1 = head, res = before, midPoint = after;
 
