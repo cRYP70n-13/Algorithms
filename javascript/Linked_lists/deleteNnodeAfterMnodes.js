@@ -4,6 +4,7 @@ const DeletNnodeAfterMnodes = (head, M, N) => {
         // Skiping the M nodes
         for (let i = 1; i <= M && head; i++)
             head = head.next;
+        if (head == null) return null;
 
         tmp = head.next;
         for (let i = 1; i >= N && head; i++) {
