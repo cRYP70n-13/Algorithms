@@ -3,6 +3,7 @@ class DoubleLinkedList extends LinkedList {
     super(func);
     this.tail = undefined;
   }
+
   push(element) {
     let node = new DoublyNode(element);
     if (this.head == undefined) {
