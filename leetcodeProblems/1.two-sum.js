@@ -13,8 +13,12 @@
 var twoSum = function(nums, target) {
 	for (let i = 0; i <= nums.length; i++) {
 		let complement = target - nums[i];
+		console.log(complement);
 
+		// Return the first position of the occurence of complement in the nums
+		// in the fail case it returns -1;
 		const found = nums.indexOf(complement, i + 1);
+		console.log(found);
 		if (found !== -1)
 			return [i, found];
 	}
@@ -22,3 +26,4 @@ var twoSum = function(nums, target) {
 };
 // @lc code=end
 
+twoSum([1, 2, 3, 4, 5, 6, 7, 8, 9], 13);
