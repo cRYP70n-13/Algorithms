@@ -3,8 +3,9 @@
 using namespace std;
 
 class Node {
-	int data;
-	Node *next;
+	public:
+		int data;
+		Node *next;
 };
 
 Node	*OddEven(Node *head)
@@ -22,7 +23,7 @@ Node	*OddEven(Node *head)
 		even->next = odd->next;
 		even = even->next;
 	}
-	odd->next = headEven
+	odd->next = headEven;
 	return head;
 }
 
