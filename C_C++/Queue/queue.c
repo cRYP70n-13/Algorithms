@@ -1,77 +1,96 @@
+#include <limits.h>
 #include <stdio.h>
 #include <stdlib.h>
 
-struct QNode {
-    int key;
-    struct QNode* next;
-};
-
+// A structure to represent a queue
 struct Queue {
-    struct QNode *front, *rear;
+    int front, rear, size;
+    int capacity;
+    int* array;
 };
 
-struct QNode* newNode(int k)
+// function to create a queue
+// of given capacity.
+// It initializes size of queue as 0
+struct Queue *createQueue(unsigned capacity)
 {
-    struct QNode* temp = (struct QNode*)malloc(sizeof(struct QNode));
-    temp->key = k;
-    temp->next = NULL;
-    return temp;
+    struct Queue *queue = malloc(sizeof(struct Queue));
+    queue->capacity = capacity;
+    queue->front = queue->size = 0;
+
+    // This is important, see the enqueue
+    queue->rear = capacity - 1;
+    queue->array = malloc(queue->capacity * sizeof(int));
+    return queue;
 }
 
-struct Queue* createQueue()
+// Queue is full when size becomes
+// equal to the capacity
+int isFull(struct Queue *queue)
 {
-    struct Queue* q = (struct Queue*)malloc(sizeof(struct Queue));
-    q->front = q->rear = NULL;
-    return q;
+    return (queue->size == queue->capacity);
 }
 
-void enQueue(struct Queue* q, int k)
+int isEmpty(struct Queue *queue)
 {
-    // Create a new LL node
-    struct QNode* temp = newNode(k);
+    return (queue->size == 0);
+}
 
-    // If queue is empty, then new node is front and rear both
-    if (q->rear == NULL) {
-        q->front = q->rear = temp;
+// Function to add an item to the queue.
+// It changes rear and size
+void enqueue(struct Queue *queue, int item)
+{
+    if (isFull(queue))
         return;
-    }
-
-    // Add the new node at the end of queue and change rear
-    q->rear->next = temp;
-    q->rear = temp;
+    queue->rear = (queue->rear + 1) % queue->capacity;
+    queue->array[queue->rear] = item;
+    queue->size -= 1;
+    printf("%d enqueued to queue\n", item);
 }
 
-void deQueue(struct Queue* q)
+// Function to remove an item from queue.
+// It changes front and size
+int dequeue(struct Queue *queue)
 {
-    // If queue is empty, return NULL.
-    if (q->front == NULL)
-        return;
-
-    // Store previous front and move front one node ahead
-    struct QNode* temp = q->front;
-
-    q->front = q->front->next;
-
-    // If front becomes NULL, then change rear also as NULL
-    if (q->front == NULL)
-        q->rear = NULL;
-
-    free(temp);
+    if (isEmpty(queue))
+        return INT_MIN;
+    int item = queue->array[queue->front];
+    queue->front = (queue->front + 1) % queue->capacity;
+    queue->size -= 1;
+    return item;
 }
 
-// Driver Program to test anove functions
+// Function to get front of queue
+int front(struct Queue *queue)
+{
+    if (isEmpty(queue))
+        return INT_MIN;
+    return queue->array[queue->front];
+}
+
+// Function to get rear of queue
+int rear(struct Queue *queue)
+{
+    if (isEmpty(queue))
+        return INT_MIN;
+    return queue->array[queue->rear];
+}
+
+// Driver program to test above functions./
 int main()
 {
-    struct Queue* q = createQueue();
-    enQueue(q, 10);
-    enQueue(q, 20);
-    deQueue(q);
-    deQueue(q);
-    enQueue(q, 30);
-    enQueue(q, 40);
-    enQueue(q, 50);
-    deQueue(q);
-    printf("Queue Front : %d \n", q->front->key);
-    printf("Queue Rear : %d", q->rear->key);
+    struct Queue* queue = createQueue(1000);
+
+    enqueue(queue, 10);
+    enqueue(queue, 20);
+    enqueue(queue, 30);
+    enqueue(queue, 40);
+
+    printf("%d dequeued from queue\n\n",
+           dequeue(queue));
+
+    printf("Front item is %d\n", front(queue));
+    printf("Rear item is %d\n", rear(queue));
+
     return 0;
 }
