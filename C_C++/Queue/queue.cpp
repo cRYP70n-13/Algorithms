@@ -2,75 +2,102 @@
 
 using namespace std;
 
-struct QNode {
-    int data;
-    QNode* next;
-    QNode(int d)
-    {
-        data = d;
-        next = NULL;
-    }
+// A structure to represent a queue
+class Queue {
+public:
+    int front, rear, size;
+    unsigned capacity;
+    int* array;
 };
 
-struct Queue {
-    QNode *front, *rear;
-    Queue()
-    {
-        front = rear = NULL;
-    }
+// function to create a queue
+// of given capacity.
+// It initializes size of queue as 0
+Queue* createQueue(unsigned capacity)
+{
+    Queue* queue = new Queue();
+    queue->capacity = capacity;
+    queue->front = queue->size = 0;
 
-    void enQueue(int x)
-    {
+    // This is important, see the enqueue
+    queue->rear = capacity - 1;
+    queue->array = new int[(
+        queue->capacity * sizeof(int))];
+    return queue;
+}
 
-        // Create a new LL node
-        QNode* temp = new QNode(x);
+// Queue is full when size
+// becomes equal to the capacity
+int isFull(Queue* queue)
+{
+    return (queue->size == queue->capacity);
+}
 
-        // If queue is empty, then
-        // new node is front and rear both
-        if (rear == NULL) {
-            front = rear = temp;
-            return;
-        }
+// Queue is empty when size is 0
+int isEmpty(Queue* queue)
+{
+    return (queue->size == 0);
+}
 
-        // Add the new node at
-        // the end of queue and change rear
-        rear->next = temp;
-        rear = temp;
-    }
+// Function to add an item to the queue.
+// It changes rear and size
+void enqueue(Queue* queue, int item)
+{
+    if (isFull(queue))
+        return;
+    queue->rear = (queue->rear + 1)
+                  % queue->capacity;
+    queue->array[queue->rear] = item;
+    queue->size = queue->size + 1;
+    cout << item << " enqueued to queue\n";
+}
 
-    void deQueue()
-    {
-        // If queue is empty, return NULL.
-        if (front == NULL)
-            return;
+// Function to remove an item from queue.
+// It changes front and size
+int dequeue(Queue* queue)
+{
+    if (isEmpty(queue))
+        return INT_MIN;
+    int item = queue->array[queue->front];
+    queue->front = (queue->front + 1)
+                   % queue->capacity;
+    queue->size = queue->size - 1;
+    return item;
+}
 
-        // Store previous front and
-        // move front one node ahead
-        QNode* temp = front;
-        front = front->next;
+// Function to get front of queue
+int front(Queue* queue)
+{
+    if (isEmpty(queue))
+        return INT_MIN;
+    return queue->array[queue->front];
+}
 
-        // If front becomes NULL, then
-        // change rear also as NULL
-        if (front == NULL)
-            rear = NULL;
+// Function to get rear of queue
+int rear(Queue* queue)
+{
+    if (isEmpty(queue))
+        return INT_MIN;
+    return queue->array[queue->rear];
+}
 
-        delete (temp);
-    }
-};
-
-// Driven Program
+// Driver code
 int main()
 {
+    Queue* queue = createQueue(1000);
 
-    Queue q;
-    q.enQueue(10);
-    q.enQueue(20);
-    q.deQueue();
-    q.deQueue();
-    q.enQueue(30);
-    q.enQueue(40);
-    q.enQueue(50);
-    q.deQueue();
-    cout << "Queue Front : " << (q.front)->data << endl;
-    cout << "Queue Rear : " << (q.rear)->data;
+    enqueue(queue, 10);
+    enqueue(queue, 20);
+    enqueue(queue, 30);
+    enqueue(queue, 40);
+
+    cout << dequeue(queue)
+         << " dequeued from queue\n";
+
+    cout << "Front item is "
+         << front(queue) << endl;
+    cout << "Rear item is "
+         << rear(queue) << endl;
+
+    return 0;
 }
