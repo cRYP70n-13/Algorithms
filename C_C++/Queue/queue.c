@@ -2,50 +2,54 @@
 #include <stdlib.h>
 
 struct QNode {
-    int data;
-    struct QNode *next;
-}
+    int key;
+    struct QNode* next;
+};
 
 struct Queue {
     struct QNode *front, *rear;
 };
 
-struct QNode    *NewNode(int data)
+struct QNode* newNode(int k)
 {
-    struct QNode *newNode = malloc(sizeof(struct QNode));
-    newNode->data = data;
-    newNode->next = NULL;
-    return newNode;
+    struct QNode* temp = (struct QNode*)malloc(sizeof(struct QNode));
+    temp->key = k;
+    temp->next = NULL;
+    return temp;
 }
 
-struct QNode    *createQueue()
+struct Queue* createQueue()
 {
-    struct Queue* q = malloc(sizeof(struct Queue));
+    struct Queue* q = (struct Queue*)malloc(sizeof(struct Queue));
     q->front = q->rear = NULL;
     return q;
 }
 
-// The Enque function to add an element to our Queue
-void    Enque(struct QNode *q, int data)
+void enQueue(struct Queue* q, int k)
 {
     // Create a new LL node
-    struct QNode *new = newNode(data);
+    struct QNode* temp = newNode(k);
 
     // If queue is empty, then new node is front and rear both
     if (q->rear == NULL) {
-        q->front = q->rear = new;
+        q->front = q->rear = temp;
         return;
     }
 
     // Add the new node at the end of queue and change rear
-    q->rear->next = new;
-    q->rear = new;
+    q->rear->next = temp;
+    q->rear = temp;
 }
 
-void    Dequeue(struct QNode *q)
+void deQueue(struct Queue* q)
 {
-    if (q->front == NULL) return ;
-    struct QNode *tmp = q->front;
+    // If queue is empty, return NULL.
+    if (q->front == NULL)
+        return;
+
+    // Store previous front and move front one node ahead
+    struct QNode* temp = q->front;
+
     q->front = q->front->next;
 
     // If front becomes NULL, then change rear also as NULL
@@ -53,4 +57,21 @@ void    Dequeue(struct QNode *q)
         q->rear = NULL;
 
     free(temp);
+}
+
+// Driver Program to test anove functions
+int main()
+{
+    struct Queue* q = createQueue();
+    enQueue(q, 10);
+    enQueue(q, 20);
+    deQueue(q);
+    deQueue(q);
+    enQueue(q, 30);
+    enQueue(q, 40);
+    enQueue(q, 50);
+    deQueue(q);
+    printf("Queue Front : %d \n", q->front->key);
+    printf("Queue Rear : %d", q->rear->key);
+    return 0;
 }
