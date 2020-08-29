@@ -9,14 +9,11 @@
  * @param {string} s
  * @return {boolean}
  */
-var isPalindrome = function(s) {
-	// My idea is to traverse the string with two pointers 
-	// If we found them the same return true else false
-	// NOTE: -> I have to escape the non alpha characters
-	// check just the range [a-zA-Z];
-	let p1 = s[0];
-	let p2 = s[s.length -1];
-};
+function isPalindrome(s) {
+  if (s.length < 2) return true;
+  const letterRange = s.replace(/[^a-zA-Z0-9]/g, "").toLowerCase();
+  for (let i = 0, j = letterRange.length - 1; i <= j; i++, j--)
+    if (letterRange[i] != letterRange[j]) return false;
+  return true;
+}
 // @lc code=end
-
-isPalindrome("A man, a plan, a canal: Panama");
