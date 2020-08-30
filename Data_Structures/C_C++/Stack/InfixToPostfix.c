@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 // Stack type
 struct Stack
@@ -76,3 +77,43 @@ int     infixToPostfix(char *exp)
     // Create a stack of capacity equal to expression size
     struct Stack *stack = createStack(strlen(exp));
     if(!stack) return -1; // In the case of error Stack not created
+    for (i = 0, k = -1; exp[i]; i++) {
+        // If the scanned character is an operand so we add it to the output
+        if (isOperand(exp[i]))
+            exp[++k] = exp[i];
+        // Else if the scanned char is a '(' we push it to the stack
+        else if (exp[i] == '(')
+            push(stack, exp[i]);
+        // Else if the scanned char is a ')' We pop and output from the stack till we
+        // find a '('
+        else if (exp[i] == ')') {
+            while (!isEmpty(stack) && peek(stack) != '(')
+                exp[++k] = pop(stack);
+            if (!isEmpty(stack) && peek(stack) != '(')
+                return -1; // invalid expression
+            else
+                pop(stack);
+        }
+        else // an operator is encountered
+        {
+            while (!isEmpty(stack) && prec(exp[i]) <= prec(peek(stack)))
+                exp[++k] = pop(stack);
+            push(stack, exp[i]);
+        }
+    }
+    // pop all the operators from the stack
+    while (!isEmpty(stack))
+        exp[++k] = pop(stack );
+
+    exp[++k] = '\0';
+    printf( "%s", exp );
+    return 1;
+}
+
+// Driver program to test above functions
+int main()
+{
+    char exp[] = "a+b*(c^d-e)^(f+g*h)-i";
+    infixToPostfix(exp);
+    return 0;
+}
