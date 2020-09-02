@@ -16,8 +16,14 @@
  * @param {ListNode} head
  * @return {ListNode}
  */
-var swapPairs = function(head) {
-    
+var swapPairs = function (head) {
+	// Maybe I think just swapping the values should be good
+	// And with recursive approach it's move efficient
+	if (!head || !head.next) return head;
+	let v1 = head, v2 = head.next, v3 = v2.next; // v3 = head.next.next;
+	v2.next = v1;
+	v1.next = swapPairs(v3);
+	return v2;
 };
 // @lc code=end
 
