@@ -38,7 +38,7 @@ class DoublyLinkedList:
 
         # 1. Check if the given prev_node is None
         if prev_node is None:
-            print "the given previous node cannot be NULL"
+            print("the given previous node cannot be NULL")
             return
 
         # 2. allocate new node
@@ -94,15 +94,15 @@ class DoublyLinkedList:
     # starting from the given node
     def printList(self, node):
 
-        print "\nTraversal in forward direction"
-        while(node is not None):
-            print " % d" %(node.data),
+        print("\nTraversal in forward direction")
+        while (node is not None):
+            print("%d" %(node.data))
             last = node
             node = node.next
 
-        print "\nTraversal in reverse direction"
-        while(last is not None):
-            print " % d" %(last.data),
+        print("\nTraversal in reverse direction")
+        while (last is not None):
+            print("%d" %(last.data))
             last = last.prev
 
 llist = DoublyLinkedList()
@@ -112,5 +112,5 @@ llist.push(1)
 llist.append(4)
 llist.insertAfter(llist.head.next, 8)
 
-print "Created DLL is: ",
+print("Created DLL is: ")
 llist.printList(llist.head)
