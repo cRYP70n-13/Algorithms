@@ -25,3 +25,4 @@ var twoSum = function(nums, target) {
 // @lc code=end
 
 console.log(twoSum([1, 2, 3, 4, 5, 6, 7, 8, 9], 13));
+console.log('otmane')
