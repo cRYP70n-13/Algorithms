@@ -9,13 +9,8 @@
  * @param {number} num
  * @return {number}
  */
-var addDigits = function(num) {
-	let n = num;
+var addDigits = function (num) {
+	// We can also use the iteration root in mathematic
+	return 1 + (num - 1) % 9;
 };
 // @lc code=end
-
-let num = 1837;
-while (num > 0) {
-	console.log(num % 10);
-	num = Math.floor(num / 10);
-}
