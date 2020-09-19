@@ -1,6 +1,6 @@
 //Node
 class Node {
-    constructor(key){
+    constructor(key) {
         this.key = key,
         this.left = null,
         this.right = null
@@ -9,7 +9,7 @@ class Node {
 
 //BST
 class BST {
-    constructor(){
+    constructor() {
         this.root = null;
     }
 
@@ -28,7 +28,7 @@ class BST {
     }
 
     //Insert
-    insert = (key) => {
+    insert = key => {
         let newNode = new Node(key);
 
         if (this.root == null)
