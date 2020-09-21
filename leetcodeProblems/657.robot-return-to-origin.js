@@ -13,17 +13,17 @@ var judgeCircle = function(moves) {
 	let res1 = 0;
 	let res2 = 0;
 	for (let i = 0; i < moves.length; i++) {
-		if (moves[i] === 'U') {
+		if (moves[i] == 'U')
 			res1++;
-		} else if (moves[i] === 'D') {
+		else if (moves[i] == 'D')
 			res1--;
-	    } else if (moves[i] === 'L') {
+	    else if (moves[i] == 'L')
 			res2++;
-		} else if (moves[i] === 'R') {
+		else if (moves[i] == 'R')
 			res2--;
-		}
 	}
 	return (res1 == 0 && res2 == 0);
 };
 // @lc code=end
 
+console.log(judgeCircle('LDRRLRUULR'));
