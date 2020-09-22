@@ -12,6 +12,7 @@
 var commonChars = function(A) {
 	let n = A[0].length;
 	let res = [];
+
 	for (let i = 0; i < n; i++) {
 		let letter = A[0][i];
 		if (A.every(word => word.indexOf(letter) !== -1)) {

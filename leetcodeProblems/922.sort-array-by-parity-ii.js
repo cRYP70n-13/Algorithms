@@ -13,6 +13,7 @@ const sortArrayByParityII = function (A) {
 	let odd = 1;
 	let even = 0;
 	let res = [];
+
 	for (let i = 0; i < A.length; i++) {
 		if (A[i] % 2 === 0) {
 			res[even] = A[i];
