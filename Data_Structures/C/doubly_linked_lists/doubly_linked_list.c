@@ -119,7 +119,6 @@ void printList(struct Node *node)
 	}
 }
 
-/* Driver program to test above functions*/
 int main()
 {
 	/* Start with the empty list */

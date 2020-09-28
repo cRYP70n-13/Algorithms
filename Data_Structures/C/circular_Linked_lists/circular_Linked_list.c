@@ -105,7 +105,6 @@ void traverse(struct Node *last)
 	} while (p != last->next);
 }
 
-// Driven Program
 int main()
 {
 	struct Node *last = NULL;
