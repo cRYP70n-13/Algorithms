@@ -17,7 +17,7 @@ extern void *put(dynamic_array_t *da, const void *value, unsigned index);
 
 extern void *get(dynamic_array_t *da, const unsigned index);
 
-extern void delete(dynamic_array_t *da, const unsigned index);
+extern void Delete(dynamic_array_t *da, const unsigned index);
 
 unsigned contains(const unsigned size, const unsigned index);
 

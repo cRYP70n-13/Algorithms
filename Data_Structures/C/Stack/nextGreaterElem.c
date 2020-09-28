@@ -1,129 +1,129 @@
-#include<stdio.h>
-#include<stdlib.h>
-#include<stdbool.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdbool.h>
+
 #define STACKSIZE 100
 
 // This one is Just a stright forward algorithm
 void printNGE(int arr[], int n)
 {
-    int next, i, j;
-    for (i = 0; i < n; i++)
-    {
-        next = -1;
-        for (j = i + 1; j < n; j++)
-        {
-            if (arr[i] < arr[j])
-            {
-                next = arr[j];
-                break;
-            }
-        }
-        printf("%d -- %dn", arr[i], next);
-    }
+	int next, i, j;
+	for (i = 0; i < n; i++)
+	{
+		next = -1;
+		for (j = i + 1; j < n; j++)
+		{
+			if (arr[i] < arr[j])
+			{
+				next = arr[j];
+				break;
+			}
+		}
+		printf("%d -- %dn", arr[i], next);
+	}
 }
 
 struct stack
 {
-    int top;
-    int items[STACKSIZE];
+	int top;
+	int items[STACKSIZE];
 };
 
 void push(struct stack *ps, int x)
 {
-    if (ps->top == STACKSIZE-1)
-    {
-        printf("Error: stack overflown");
-        getchar();
-        exit(0);
-    }
-    else
-    {
-        ps->top += 1;
-        int top = ps->top;
-        ps->items [top] = x;
-    }
+	if (ps->top == STACKSIZE - 1)
+	{
+		printf("Error: stack overflown");
+		return ;
+	}
+	else
+	{
+		ps->top += 1;
+		int top = ps->top;
+		ps->items[top] = x;
+	}
 }
 
 bool isEmpty(struct stack *ps)
 {
-    return (ps->top == -1)? true : false;
+	return (ps->top == -1) ? true : false;
 }
 
 int pop(struct stack *ps)
 {
-    int temp;
-    if (ps->top == -1)
-    {
-        printf("Error: stack underflow n");
-        exit(0);
-    }
-    else
-    {
-        int top = ps->top;
-        temp = ps->items [top];
-        ps->top -= 1;
-        return temp;
-    }
+	int temp;
+	if (ps->top == -1)
+	{
+		printf("Error: stack underflow n");
+		exit(0);
+	}
+	else
+	{
+		int top = ps->top;
+		temp = ps->items[top];
+		ps->top -= 1;
+		return temp;
+	}
 }
 
-void    printNGEStack(int arr[], int n)
+void printNGEStack(int arr[], int n)
 {
-    int i = 0;
-    struct stack s;
-    s.top = -1;
-    int element, next;
+	int i = 0;
+	struct stack s;
+	s.top = -1;
+	int element, next;
 
-    push(&s, arr[0]);
+	push(&s, arr[0]);
 
-    // iterate for rest of the elements
-    for (i = 1; i < n; i++)
-    {
-        next = arr[i];
-        if (isEmpty(&s) == false)
-        {
-            // if stack is not empty, then pop an element from stack
-            element = pop(&s);
+	// iterate for rest of the elements
+	for (i = 1; i < n; i++)
+	{
+		next = arr[i];
+		if (isEmpty(&s) == false)
+		{
+			// if stack is not empty, then pop an element from stack
+			element = pop(&s);
 
-            /* If the popped element is smaller than next, then
+			/* If the popped element is smaller than next, then
                 a) print the pair
                 b) keep popping while elements are smaller and
                 stack is not empty */
-            while (element < next)
-            {
-                printf("n %d --> %d", element, next);
-                if (isEmpty(&s) == true)
-                   break;
-                element = pop(&s);
-            }
+			while (element < next)
+			{
+				printf("n %d --> %d", element, next);
+				if (isEmpty(&s) == true)
+					break;
+				element = pop(&s);
+			}
 
-            /* If element is greater than next, then push
+			/* If element is greater than next, then push
                the element back */
-            if (element > next)
-                push(&s, element);
-        }
+			if (element > next)
+				push(&s, element);
+		}
 
-        /* push next to stack so that we can find
+		/* push next to stack so that we can find
            next greater for it */
-        push(&s, next);
-    }
+		push(&s, next);
+	}
 
-    /* After iterating over the loop, the remaining
+	/* After iterating over the loop, the remaining
        elements in stack do not have the next greater
        element, so print -1 for them */
-    while (isEmpty(&s) == false)
-    {
-        element = pop(&s);
-        next = -1;
-        printf("n %d --> %d", element, next);
-    }
+	while (isEmpty(&s) == false)
+	{
+		element = pop(&s);
+		next = -1;
+		printf("n %d --> %d", element, next);
+	}
 }
 
 int main()
 {
-    int arr[]= {11, 13, 21, 3};
-    int n = sizeof(arr)/sizeof(arr[0]);
-    printNGE(arr, n);
-    printf("\n");
-    printNGEStack(arr, n);
-    return 0;
+	int arr[] = {11, 13, 21, 3};
+	int n = sizeof(arr) / sizeof(arr[0]);
+	printNGE(arr, n);
+	printf("\n");
+	printNGEStack(arr, n);
+	return 0;
 }

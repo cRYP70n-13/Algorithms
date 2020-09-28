@@ -7,7 +7,7 @@ struct Node {
     struct Node *right;
 };
 
-void    preOrder(Node *root)
+void    preOrder(struct Node *root)
 {
     if (!root) return;
     printf("%c ", root->data);

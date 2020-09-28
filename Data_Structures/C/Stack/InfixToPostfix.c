@@ -7,14 +7,13 @@ struct Stack
 {
     int top;
     unsigned capacity;
-    int* array;
+    int *array;
 };
 
 // Stack Operations
 struct Stack    *createStack( unsigned capacity )
 {
     struct Stack* stack =  malloc(sizeof(struct Stack));
-
     if (!stack)
         return NULL;
 
@@ -39,7 +38,7 @@ char    peek(struct Stack *stack)
 char    pop(struct Stack *stack)
 {
     if (!isEmpty(stack))
-        return stack->array[stack->top--] ;
+        return stack->array[stack->top--];
     return '$';
 }
 
@@ -110,7 +109,6 @@ int     infixToPostfix(char *exp)
     return 1;
 }
 
-// Driver program to test above functions
 int main()
 {
     char exp[] = "a+b*(c^d-e)^(f+g*h)-i";

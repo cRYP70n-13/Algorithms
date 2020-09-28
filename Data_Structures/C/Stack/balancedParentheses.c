@@ -62,7 +62,6 @@ bool    isMatchingPair(char character1, char character2)
 bool areParenthesisBalanced(char exp[])
 {
     int i = 0;
-
     struct sNode* stack = NULL;
 
     while (exp[i]) {

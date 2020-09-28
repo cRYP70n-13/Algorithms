@@ -65,7 +65,6 @@ struct node* newNode(int data)
     return (node);
 }
 
-/* Driver program to test above functions*/
 int main()
 {
     struct node *root = newNode(1);

@@ -12,7 +12,7 @@ dynamic_array_t *init_dynamic_array()
 	return da;
 }
 
-void *add(dynamic_array_t *da, const void *value)
+void	*add(dynamic_array_t *da, const void *value)
 {
 	if (da->size >= da->capacity)
 	{
@@ -28,7 +28,7 @@ void *add(dynamic_array_t *da, const void *value)
 	return copy_value;
 }
 
-void *put(dynamic_array_t *da, const void *value, const unsigned index)
+void	*put(dynamic_array_t *da, const void *value, const unsigned index)
 {
 	if (!contains(da->size, index))
 		return INDEX_OUT_OF_BOUNDS;
@@ -40,7 +40,7 @@ void *put(dynamic_array_t *da, const void *value, const unsigned index)
 	return copy_value;
 }
 
-void *get(dynamic_array_t *da, const unsigned index)
+void	*get(dynamic_array_t *da, const unsigned index)
 {
 	if (!contains(da->size, index))
 		return INDEX_OUT_OF_BOUNDS;
@@ -48,7 +48,7 @@ void *get(dynamic_array_t *da, const unsigned index)
 	return da->items[index];
 }
 
-void delete (dynamic_array_t *da, const unsigned index)
+void	Delete(dynamic_array_t *da, const unsigned index)
 {
 	if (!contains(da->size, index))
 		return;
@@ -61,7 +61,7 @@ void delete (dynamic_array_t *da, const unsigned index)
 	free(da->items[da->size]);
 }
 
-unsigned contains(const unsigned size, const unsigned index)
+unsigned	contains(const unsigned size, const unsigned index)
 {
 	if (size >= 0 && index < size)
 		return 1;
@@ -70,7 +70,7 @@ unsigned contains(const unsigned size, const unsigned index)
 	return 0;
 }
 
-void *retrive_copy_of_value(const void *value)
+void	*retrive_copy_of_value(const void *value)
 {
 	void *value_copy = malloc(sizeof(void *));
 	memcpy(value_copy, value, sizeof(void *));
