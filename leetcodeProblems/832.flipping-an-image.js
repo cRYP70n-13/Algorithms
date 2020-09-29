@@ -10,11 +10,12 @@
  * @return {number[][]}
  */
 var flipAndInvertImage = function (A) {
-	for (let arr of A) {
-		arr.reverse()
-		for (let i = 0; i < arr.length; i++)
-			arr[i] = arr[i] == 0 ? 1 : 0;
+	for (let a of A) {
+		a.reverse();
+		for (let i = 0; i < a.length; i++)
+			a[i] = a[i] === 1 ? 0 : 1;
 	}
 	return A;
-};
-// @lc code=end
+}
+
+console.log(flipAndInvertImage([[1, 1, 0], [1, 0, 1], [0, 0, 0]]));
