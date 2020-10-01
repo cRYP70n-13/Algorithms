@@ -1,5 +1,5 @@
 /**
- * C++ Program to implement the Min_heap DS and it operations
+ * C++ Program to implement the Max_heap DS and it operations
  * Created By: cRYP70N
  * Date: 30/09/2020
  */
@@ -49,13 +49,13 @@ class MaxHeap {
 			return ((2 * i) + 2);
 		}
 
-		// this is to get the root which is the min element
+		// this is to get the root which is the max element
 		int exctractMax();
 
 		// Decreases key value of key at index i to new_val
 		void decreaseKey(int i, int new_val);
 
-		// Returns the minimum key (key at root) from min heap
+		// Returns the maximum key (key at root) from min heap
 		int getMax()
 		{
 			return heap_array[0];
@@ -96,7 +96,7 @@ void MaxHeap::insertKey(int k)
 }
 
 // Decreases value of key at index 'i' to new_val.  It is assumed that
-// new_val is smaller than harr[i].
+// new_val is greater than harr[i].
 void MaxHeap::decreaseKey(int i, int new_val)
 {
 	heap_array[i] = new_val;
@@ -107,7 +107,7 @@ void MaxHeap::decreaseKey(int i, int new_val)
 	}
 }
 
-// Remove the very minimum number from a MaxHeap (root)
+// Remove the very maximum number from a MaxHeap (root)
 int	MaxHeap::exctractMax()
 {
 	if (heap_size <= 0)
