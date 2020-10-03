@@ -9,4 +9,20 @@ const TwoSum = (arr, n) => {
 	return [0, 0];
 }
 
-console.log(TwoSum([3, 5, -4, 8, 11, 1, -1, 6], 10));
+// We can also do it in another clever way
+const cleverTwoSum = (arr, target) => {
+	arr.sort((a, b) => a - b);
+	let left = 0;
+	let right = arr.length - 1;
+	while (left < right) {
+		let current_sum = arr[left] + arr[right];
+		if (current_sum === target)
+			return [arr[left], arr[right]];
+		else if (current_sum > target)
+			right--;
+		else if (current_sum < target)
+			left++;
+	}
+	return [];
+}
+console.log(cleverTwoSum([3, 5, -4, 8, 11, 1, -1, 6], 10));
