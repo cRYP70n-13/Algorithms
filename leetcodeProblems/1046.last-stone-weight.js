@@ -38,12 +38,12 @@ var lastStoneWeight = function (stones) {
 	if (stones.length == 1) return stones[0]; //only last no need smash
 	while (stones.length > 1) {
 		stones.sort((a, b) => a - b);
-		console.log(stones);
+		// console.log(stones);
 		let add = stones[stones.length - 1] - stones[stones.length - 2];
 		stones.splice(-2, 2);
-		console.log(stones);
+		// console.log(stones);
 		stones.push(add);
-		console.log(stones);
+		// console.log(stones);
 	}
 	return stones[0];
 };

@@ -10,7 +10,7 @@
  * @return {number}
  */
 var numRookCaptures = function(board) {
-    
+	
 };
 // @lc code=end
 
