@@ -13,4 +13,4 @@ def get_new_letter(letter, key):
     return chr(newLetterCode) if newLetterCode <= 122 else chr(96 + newLetterCode % 122)
 
 
-print(caesarCipherEncryptor("9", 9))
+print(caesarCipherEncryptor("otmane cRYP70N", 9))
