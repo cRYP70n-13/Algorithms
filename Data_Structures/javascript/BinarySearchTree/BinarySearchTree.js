@@ -1,4 +1,4 @@
-//Node
+// Node
 class Node {
     constructor(key) {
         this.key = key,
@@ -7,7 +7,7 @@ class Node {
     }
 }
 
-//BST
+// BST
 class BST {
     constructor() {
         this.root = null;
@@ -27,7 +27,7 @@ class BST {
         }
     }
 
-    //Insert
+    // Insert
     insert = key => {
         let newNode = new Node(key);
 
@@ -37,7 +37,7 @@ class BST {
             this.insertNode(this.root, newNode);
     }
 
-    //Search
+    // Search
     search = (key, node = this.root) => {
         if (node === null)
             return false;
@@ -50,7 +50,7 @@ class BST {
             return true;
     }
 
-    //Min
+    // Min
     min = (node = this.root) => {
         if (node) {
             while (node && node.left !== null)
@@ -60,7 +60,7 @@ class BST {
         return null;
     }
 
-    //Max
+    // Max
     max = (node = this.root) => {
         if (node) {
             while (node && node.right !== null)
@@ -70,7 +70,7 @@ class BST {
         return null;
     }
 
-    //Remove
+    // Remove
     remove = (key) => {
         this.root = this.removeNode(this.root, key);
     }
