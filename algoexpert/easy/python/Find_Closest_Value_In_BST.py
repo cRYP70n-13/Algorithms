@@ -18,6 +18,7 @@ class BST:
 		return self
 
 
+# the main find the closet value function
 def findClosestValueInBst(root, target):
 	return _findClosestValueHelper(root, target, float("inf"))
 
