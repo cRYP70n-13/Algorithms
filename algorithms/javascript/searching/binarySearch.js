@@ -12,4 +12,6 @@ const binarySearch = (list, value) => {
     return -1;
 }
 
-console.log(binarySearch([1, 2, 4, 5, 6, 33, 57], 8));
+console.log(binarySearch([1, 2, 4, 5, 6, 33, 57], 33));
+
+
