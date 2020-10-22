@@ -23,7 +23,7 @@ def TwoSum_2(array, target):
 		if second_exptected_num in second_array:
 			result_arr.append(first_num)
 			result_arr.append(second_exptected_num)
-	
+
 	return result_arr
 
 # solution 3
@@ -45,4 +45,4 @@ def optimal_two_sum(arr, target):
 	return []
 
 
-print(optimal_two_sum([5, 3, -4, 8, 11, 1, -1, 6], 10))
+print(optimal_two_sum([3, 2, 4], 6))
