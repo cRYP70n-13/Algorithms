@@ -1,12 +1,15 @@
-def findDesapearedElement(nums):
-	hash_table = {}
-	result = []
+def disappeared_elements(arr, n):
+	rightSum = 0
+	sum = 0
 
-	for num in nums:
-		hash_table[num] = 1
-	
-	for num in range(1, len(nums) + 1):
-		if num not in hash_table:
-			result.append(num)
+	# This is the guass elimination approach to calculate the hole sum in a list
+	rightSum = (n + 1) * (n + 2) / 2
 
-	return result
+	for i in arr:
+		sum += i
+
+	return rightSum - sum
+
+
+arr = [1, 2, 3, 4, 5, 6, 8, 9]
+print(disappeared_elements(arr, 8))
