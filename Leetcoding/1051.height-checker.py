@@ -10,6 +10,7 @@ class Solution:
         cnt = 0
         sorted_array = sorted(heights)
 
+		# Here I felt like I need some python course
         for idx , i in enumerate(heights):
             if i != sorted_array[idx]:
                 cnt += 1
