@@ -11,7 +11,6 @@ def count(arr, x, n):
 def first(arr, low, high, x, n):
     if high >= low:
         mid = (low + high) // 2
-
     if (mid == 0 or x > arr[mid-1]) and arr[mid] == x:
         return mid
     elif x > arr[mid]:
@@ -24,7 +23,6 @@ def first(arr, low, high, x, n):
 def last(arr, low, high, x, n):
     if high >= low:
         mid = (low + high) // 2
-
     if (mid == n-1 or x < arr[mid+1]) and arr[mid] == x:
         return mid
     elif x < arr[mid]:

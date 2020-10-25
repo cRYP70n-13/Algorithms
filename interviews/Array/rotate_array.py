@@ -12,6 +12,7 @@ def leftRotatebyOne(arr, n):
     arr[n - 1] = temp
 
 
+# this is just a helper function
 def printArray(arr, size):
     for i in range(size):
         print("%d " % arr[i], end=" ")
