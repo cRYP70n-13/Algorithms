@@ -3,10 +3,10 @@ function insertionSort(array) {
   let length = array.length;
 
   for (let i = 1; i < length; i++) {
-    let temp = array[i];
-    for (let j = i - 1; j >= 0 && array[j] > temp; j--)
-      array[j+1] = array[j];
-    array[j+1] = temp;
+	let temp = array[i];
+	for (let j = i - 1; j >= 0 && array[j] > temp; j--)
+	  array[j+1] = array[j];
+	array[j+1] = temp;
   }
 
   return array;
@@ -15,13 +15,13 @@ function insertionSort(array) {
 // Implement bucket sort
 function bucketSort(array, bucketSize) {
   if (array.length === 0)
-    return array;
+	return array;
 
   // Declaring lets
   let i,
-      minValue = array[0],
-      maxValue = array[0],
-      bucketSize = bucketSize || 5;
+	  minValue = array[0],
+	  maxValue = array[0],
+	  bucketSize = bucketSize || 5;
 
   // Setting min and max values
   array.forEach(function (currentVal) {
@@ -36,7 +36,7 @@ function bucketSort(array, bucketSize) {
   let allBuckets = new Array(bucketCount);
 
   for (i = 0; i < allBuckets.length; i++)
-    allBuckets[i] = [];
+	allBuckets[i] = [];
 
   // Pushing values to buckets
   array.forEach(function (currentVal) {
