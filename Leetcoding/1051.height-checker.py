@@ -15,6 +15,5 @@ class Solution:
             if i != sorted_array[idx]:
                 cnt += 1
         return cnt
- 
-# @lc code=end
 
+# @lc code=end
