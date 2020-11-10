@@ -5,7 +5,7 @@ class newNode:
 		self.right = None
 
 
-def isBST(root, l=None, r=None):
+def isBST(root, l = None, r = None):
 
 	if (root == None):
 		return True
@@ -27,11 +27,11 @@ def isBST(root, l=None, r=None):
 
 
 if __name__ == '__main__':
-	root = newNode(3)
-	root.left = newNode(2)
-	root.right = newNode(5)
-	root.right.left = newNode(1)
-	root.right.right = newNode(4)
+	root = newNode(5)
+	root.left = newNode(4)
+	root.right = newNode(7)
+	# root.right.left = newNode(1)
+	# root.right.right = newNode(4)
 
 	if (isBST(root, None, None)):
 		print("Is BST")
